@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dia>
+	<dialogues id="dialogue_0">
+		<background>
+			<img_path>img/classroom_1.jpg</img_path>
+		</background>
+		<dialogue>
+			<speaker>华芸</speaker>
+			<content>「放松心神，不要刻意约束你的思维，顺其自然，约束自己的呼吸……」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>华芸</speaker>
+			<content>「今天的修行就先到这里，大家的表现都很不错，回去以后注意休息，不要疲劳修行，记住了没有？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>华芸</speaker>
+			<content>「那么，大家还有什么问题吗？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「华芸老师，我们的进度现在排名多少？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>华芸</speaker>
+			<content>「平均进度的话……第四。」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「这一次还是？」</content>
+		</dialogue>
+		<dialogue>
+			<content>	阳成学院的新生们，一共被分到了四名导师手下，组成四个班级进行修行。进度排名第四，也就是在四组人中排名最末……而这显然已非一次两次。</content>
+		</dialogue>
+		<dialogue>
+			<content>	新生在最初的分配时，每一组学员的天赋都相差无几，照理说进度上四组人相差不会太远，而以华芸的认真，以及学员们的积极响应，这一班怎么也不至于长期敬陪末座。</content>
+		</dialogue>
+		<dialogue>
+			<content>	于是在一阵吵闹中，所有人的目光，都集中到了某个角落。某个，造成这一切的罪魁祸所在的角落。</content>
+		</dialogue>
+		<dialogue>
+			<content>	看着那个在角落里微闭双眼，面无表情的蓬莱男孩儿，即便是华芸也感到一阵无奈。为什么学院会允许那样的孩子入学呢？明明……完全没有作为筑梦师的天赋啊。</content>
+		</dialogue>
+		<dialogue>
+			<content>	三周多时间，大多数学员都已经进入了醒梦的后半阶段，唯独那个坐在角落里的蓬莱男孩儿，始终维持在静心那一关，未有寸进。</content>
+		</dialogue>
+		<dialogue>
+			<content>	并非进度缓慢，而是根本无法进步，无论华芸如何去引导，始终无法令那孩子自主释放任何一个梦境，醒梦阶段的修行根本全是无用功，而这样的成绩，自然也极大拖后了班级的平均进度。</content>
+		</dialogue>
+		<dialogue>
+			<content>	华芸知道这并非学员不够努力，只是有时候，天赋不足这句话实在很致命。</content>
+		</dialogue>
+		<dialogue>
+			<content>	那个蓬莱男孩儿，显然不具备筑梦师的天赋，如果说静心阶段还是任何一名普通人都能经过训练而完成的话，那么醒梦就是区分筑梦师与普通人的一道门槛，蓬莱男孩儿的表现，是门外汉的典型。</content>
+		</dialogue>
+		<dialogue>
+			<content>	而事实上，他也不同于其他任何一名学员。进入阳成学院，完全没有经过正式的资格鉴定，而是被院长特批入学，其中究竟，却秘而不宣。 现在看来，这个特批的机会，实在是一种极大的浪费。阳成学院啊，多少人梦寐以求，却不得其门而入？</content>
+		</dialogue>
+		<dialogue>
+			<content>	叹了口气，华芸不再去想这些毫无意义的问题。</content>
+		</dialogue>
+		<dialogue>
+			<speaker>华芸</speaker>
+			<content>「班级的平均进度排名并不能说明什么，你们每一个人的成绩都是属于自己的，没必要在乎别人怎么样，认真修行，筑梦术自然会给你回报。」</content>
+		</dialogue>
+		<dialogue>
+			<content>	在简单的说教之后，华芸先一步离开了楼，毕竟在担任导师之余，她也有自己的修行要做。</content>
+		</dialogue>
+		<dialogue>
+			<content>	而楼之中，十多名新生已经吵成了一团，对于那个坐在角落里，导致班级屡屡蒙羞的元凶，孩子们的不满情绪早已存在，只是导师华芸反复强调，绝对不能以此生事，这才让他们没有爆出怒气来。</content>
+		</dialogue>
+		<dialogue>
+			<content>	但是孩子们的忍耐，也是有限度的。</content>
+		</dialogue>
+		<dialogue>
+			<content>	很快，那个满头金的男孩儿从座位上站起身，走到角落里那孩子的桌前，用力拍了拍桌面，引起了后者的注意。</content>
+		</dialogue>
+		<dialogue>
+			<speaker>黑发蓬莱少年</speaker>
+			<content>「哟，亨利，早上好~」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「早，早你妹啊！已经是下午了吧！王五你不要装傻！刚才华老师的话你听到了吧？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「真遗憾啊，你们又是最后一名。」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「……不是我们！是你！要没有你，我们至少也能排在第二名，你知不知道你一个人拖后了多少班级进度啊！？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「嗯，我知道，不过我觉得你们作为精英学员，不该为自己的失败找那么多客观理由，先贤说，一个人最大的敌人就是他自己……」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「够了我不要听你的先贤胡说八道！」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「你不要这么暴躁，世界那么大，做人应当心胸开阔，要不我给你讲个哲理故事吧，清新的那种。」</content>
+		</dialogue>
+		<dialogue>
+			<content>「你！」亨利只感到血液开始从全身的每一个角落猛地往头上涌，一瞬间竟然有些眼前黑……于是深呼吸了一次，依照筑梦术的静心法，使自己平复情绪，然后说道。</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「从开学到现在，三周多时间，这也是我第三次请求你……退学吧！」</content>
+		</dialogue>
+		<dialogue>
+			<content>	在金发少年看来，这已经是拯救班级的唯一办法。 有王五在，班级的排名永远不能上升，万年最末，不但对班级的声誉是毁灭性的打击，更会波及到班级内的每一名学员。</content>
+		</dialogue>
+		<dialogue>
+			<content>	其中当然包括他这个班内的第一天才。 显赫的身世，高贵的血统，人一等的天赋，亨利拥有如此众多的傲人资本，同时却也承担着比任何人更重的压力，班级名次对其他人或许只是虚名，但对他这个班级第一，却有更多地意义。</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「请你退学吧。」</content>
+		</dialogue>
+		<dialogue>
+			<content>	金男孩儿用尽最大的克制，令自己的声音听起来平静而认真。而与此同时，吵闹的楼也安静下来，所有人的目光都集中过来，关注着亨利与那蓬莱男孩儿的交涉。</content>
+		</dialogue>
+		<dialogue>
+			<content>	 面对亨利的请求，王五微蹙眉头，仿佛在认真思考，而在几分钟后，他缓缓开口：</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「其实我有个更好的主意诶……」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「说！」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「你想办法把我转去别的班拖他们的后腿，咱们里应外合……」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「你以为我没试过啊！除了华芸老师这个好人之外，你以为还有哪个班的导师愿意收留你这种废柴啊！……王五，你这样继续下去到底有什么意义？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「嗯？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「这么长时间过去，你也该明白，你的天赋根本不适合作筑梦师！哪怕进度慢一点也不要紧，可你根本是没有进度！这样你继续呆在阳成学院又有什么意义？阳成学院再怎么优秀，也没办法让天赋不足的人学到 东西，你就算再耗上十年又有何用？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「如果你是觉得半途退出很丢脸的话，那么，每一次都拖累班级敬佩末座，难道就很好看？等我们所有人都突破到空明境界，甚至更进一步成为正式筑梦师的时候，你还是停留在静心阶段，这样就好看？」</content>
+		</dialogue>
+		<dialogue>
+			<content>	亨利这番话说得异常认真诚恳，然而作为听众，王五的反应却令他感到一番苦心尽付流水。</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「不好意思你刚才说得太煽情，我走神了，要不咱们从头开始？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「你！！！」</content>
+		</dialogue>
+		<dialogue>
+			<content>道理讲不明白，亨利实在很想用拳头将那张只知道微笑的清秀脸孔打得七窍流血，然而他也知道，这个蓬莱血统的男孩儿别的本事没有，打架的功夫却是一等一的犀利，别说亨利这样十二三岁的孩子，就算是个健壮的成年人，也不见得是他的对手。</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「筑梦术一无所成，难道你在阳成学院就是为了混吃等死？」</content>
+		</dialogue>
+		<dialogue>
+			<content>	王五眼前一亮。</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「你果然懂我！」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「…」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「在阳成学院，我吃得好，住得好，因为院长特批，还不用交学费，这么好的条件真是做梦也难求啊。」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「…」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「其实你说筑梦术什么的，我根本就不在意的，反正我本来也没打算做什么筑梦师，筑梦术能不能学有什么要紧？有吃有住才是真的。」</content>
+		</dialogue>
+		<dialogue>
+			<content>亨利觉得自己快要崩溃掉了，这就是燕雀安知鸿鹄之志？与王五相比，自己这只燕雀可真是浅薄啊！</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「……你就是为了阳成学院提供的自助餐和大卧室，才不愿退学的？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「也可以这么说吧。」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「那好，你想要的吃和住，我提供给你就是了。自由都市商业区的黎明酒店是我家族的产业，我给你一个单人间，外加免费的一日三餐，一直到你住腻了为止，然后你立刻给我退学，好不好？」</content>
+		</dialogue>
+		<dialogue>
+			<content>这话一出，四周又是一阵哗然，自由都市的黎明酒店是出了名的奢华，哪怕只是最简陋的单人间，每天的收费也要达到二十枚自由币――而一枚自由币足可购买几百斤的粮食，其中的餐饮价格更是贵得离谱。这样的手笔，也只有亨利这样的大家族子弟才用得出来。为了不让王五拖累本班成绩，他真是用出了血本。</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「你是说，你给我吃，给我住！？」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>亨利</speaker>
+			<content>「没错，只要你退学。」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「你可真是个好人！」</content>
+		</dialogue>
+		<dialogue>
+			<speaker>王五</speaker>
+			<content>「可是你这样好像是在包二奶啊……」</content>
+		</dialogue>
+		<dialogue>
+			<content>哪怕再良好的涵养，也禁受不住这样的撩拨，亨利的怒火完全冲破了理智的封锁，驱使他猛地一拳挥出，直瞄着那张可恶的脸。</content>
+		</dialogue>
+	</dialogues>
+	<jump>
+		<action>SELECT</action>
+		<source_path>select</source_path>
+		<action_id></action_id>
+	</jump>
+	
+
+</dia>
