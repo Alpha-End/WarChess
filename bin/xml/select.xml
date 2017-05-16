@@ -1,1 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<selects>
+	<select id="select_0">
+		<option>
+			<text>无视他。</text>
+			<jump>
+				<action>SELECT</action>
+				<source_path>src/xml/select.xml</source_path>
+				<action_id>select_0</action_id>
+			</jump>
+		</option>
+	</select>
+</selects>

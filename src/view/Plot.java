@@ -76,9 +76,8 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 	@Override
 	public void run() {//载入剧情
 		// TODO Auto-generated method stub
-		loadDialogue(XMLData.dialogue_path,XMLData.next_xml_action_id);//加载台词
-		loadBackground(XMLData.dialogue_path,XMLData.next_xml_action_id);//加载背景
-		ViewData.now_dialogues_id=new String(XMLData.next_xml_action_id);//更新剧情ID
+		loadDialogue(XMLData.next_action_path,XMLData.next_action_id);//加载台词
+		loadBackground(XMLData.next_action_path,XMLData.next_action_id);//加载背景
 		ViewData.state=ViewData.PLOT;
 	}
 	
@@ -203,8 +202,8 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 	}
 	
 	public void start(){
-		if(!XMLData.next_xml_action_id.equals(ViewData.now_dialogues_id)){//若内存中台词过期则进入LOAD界面，并读取
-			
+		if(!XMLData.next_action_id.equals(ViewData.now_action_id)){//若内存中台词过期则进入LOAD界面，并读取
+			ViewData.now_action_id=new String(XMLData.next_action_id);//更新剧情ID
 			StateControl.start(ViewData.load);//进入LOAD界面
 			dialist=new ArrayList<>();
 			dialogueindex=-1;

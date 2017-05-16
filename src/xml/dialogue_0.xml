@@ -235,8 +235,8 @@
 	</dialogues>
 	<jump>
 		<action>SELECT</action>
-		<source_path>select</source_path>
-		<action_id></action_id>
+		<source_path>src/xml/select.xml</source_path>
+		<action_id>select_0</action_id>
 	</jump>
 	
 

@@ -37,8 +37,8 @@ public class KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode()==KeyEvent.VK_ENTER){
 			StateControl.end(ViewData.welcome);
-			XMLData.dialogue_path="src/xml/dialogue_0.xml";
-			XMLData.next_xml_action_id="dialogue_0";
+			XMLData.next_action_path="src/xml/dialogue_0.xml";
+			XMLData.next_action_id="dialogue_0";
 			XMLData.next_action=ViewData.PLOT;
 			StateControl.next_action();
 		}

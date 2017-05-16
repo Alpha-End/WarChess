@@ -8,35 +8,35 @@ import org.w3c.dom.NodeList;
 import data.ViewData;
 import data.XMLData;
 import entity.Dialogue;
+import entity.Jump;
 
 public class ElementR {
-	public static void getNextActionByElement(Element element) throws Exception{
+	public static Jump getNextActionByElement(Element element) throws Exception{
 		
 		Element e;
+		String next_action=null,next_action_id=null,next_action_path=null;
 		e=(Element)element.getElementsByTagName("action").item(0);
 		if(e!=null){
-			switch(e.getTextContent()){
-			case "SELECT":{XMLData.next_action=ViewData.SELECT;break;}
-			case "PLOT":{XMLData.next_action=ViewData.PLOT;break;}
-			}
+			next_action=e.getTextContent();
 		}
 		else{
 			throw new Exception();
 		}
 		e=(Element)element.getElementsByTagName("source_path").item(0);
 		if(e!=null){
-			XMLData.dialogue_path=e.getTextContent();
+			next_action_path=e.getTextContent();
 		}
 		else{
 			throw new Exception();
 		}
 		e=(Element)element.getElementsByTagName("action_id").item(0);
 		if(e!=null){
-			XMLData.next_xml_action_id=e.getTextContent();
+			next_action_id=e.getTextContent();
 		}
 		else{
 			throw new Exception();
 		}
+		return new Jump(next_action,next_action_path,next_action_id);
 	}
 	public static Dialogue loadDialogueByElement(Element element) {
 		// TODO Auto-generated method stub
