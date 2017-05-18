@@ -232,12 +232,12 @@
 		<dialogue>
 			<content>哪怕再良好的涵养，也禁受不住这样的撩拨，亨利的怒火完全冲破了理智的封锁，驱使他猛地一拳挥出，直瞄着那张可恶的脸。</content>
 		</dialogue>
+		<jump>
+			<action>SELECT</action>
+			<source_path>src/xml/select.xml</source_path>
+			<action_id>select_0</action_id>
+		</jump>
 	</dialogues>
-	<jump>
-		<action>SELECT</action>
-		<source_path>src/xml/select.xml</source_path>
-		<action_id>select_0</action_id>
-	</jump>
 	
 
 </dia>

@@ -9,8 +9,25 @@ import data.ViewData;
 import data.XMLData;
 import entity.Dialogue;
 import entity.Jump;
+import entity.Option;
 
 public class ElementR {
+	public static Option getOptionByElement(Element element){
+		Element e;
+		String text=null;
+		Jump jump=null;
+		e=(Element)element.getElementsByTagName("text").item(0);
+		if(e!=null){
+			text=e.getTextContent();
+		}
+		try{
+			jump=ElementR.getNextActionByElement((Element)element.getElementsByTagName("jump").item(0));
+		}
+		catch(Exception ex){
+			ex.printStackTrace();
+		}
+		return new Option(text,jump);
+	}
 	public static Jump getNextActionByElement(Element element) throws Exception{
 		
 		Element e;
@@ -20,21 +37,21 @@ public class ElementR {
 			next_action=e.getTextContent();
 		}
 		else{
-			throw new Exception();
+			throw new Exception("action为空");
 		}
 		e=(Element)element.getElementsByTagName("source_path").item(0);
 		if(e!=null){
 			next_action_path=e.getTextContent();
 		}
 		else{
-			throw new Exception();
+			throw new Exception("资源路径为空");
 		}
 		e=(Element)element.getElementsByTagName("action_id").item(0);
 		if(e!=null){
 			next_action_id=e.getTextContent();
 		}
 		else{
-			throw new Exception();
+			throw new Exception("action id为空");
 		}
 		return new Jump(next_action,next_action_path,next_action_id);
 	}

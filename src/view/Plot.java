@@ -10,6 +10,7 @@ import data.ViewData;
 import data.XMLData;
 import dataControl.StateControl;
 import entity.Dialogue;
+import entity.Jump;
 import interFace.PaintInterface;
 import util.DOMParser;
 import util.ElementR;
@@ -32,6 +33,7 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 	int dialogueindex;
 	int plotH,plotW,plotX,plotY;
 	BufferedImage background;
+	Jump jump;
 	
 	Font speakerfont;
 	Font dialogfont;
@@ -71,6 +73,10 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 			
 			//System.out.println(dialogue.getDialogue());
 		}
+		else{
+			jump.jumpThisAction();
+			StateControl.next_action();
+		}
 	}
 	
 	@Override
@@ -78,6 +84,8 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 		// TODO Auto-generated method stub
 		loadDialogue(XMLData.next_action_path,XMLData.next_action_id);//加载台词
 		loadBackground(XMLData.next_action_path,XMLData.next_action_id);//加载背景
+		loadNextAction(XMLData.next_action_path,XMLData.next_action_id);//加载跳转内容
+		nextDialogue();//读取第一条台词
 		ViewData.state=ViewData.PLOT;
 	}
 	
@@ -116,6 +124,13 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
         { 
         	Element firstelement=ElementR.getElementById(nodeList, id);
         	Element element = (Element)firstelement.getElementsByTagName("jump").item(0); 
+        	
+        	try{
+        		jump=ElementR.getNextActionByElement(element);
+        	}
+        	catch(Exception e){
+        		e.printStackTrace();
+        	}
         	
         } 
         
@@ -206,9 +221,12 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 			ViewData.now_action_id=new String(XMLData.next_action_id);//更新剧情ID
 			StateControl.start(ViewData.load);//进入LOAD界面
 			dialist=new ArrayList<>();
-			dialogueindex=-1;
+			
 			Thread t=new Thread(this);//开启新线程，读取
+			dialogueindex=-1;
 			t.start();
+			
+			
 		}
 		else{
 			ViewData.state=ViewData.PLOT;//进入剧情界面

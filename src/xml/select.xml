@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <selects>
 	<select id="select_0">
+		<background>
+			<img_path>img/classroom_1.jpg</img_path>
+		</background>
 		<option>
 			<text>无视他。</text>
 			<jump>
@@ -9,5 +12,22 @@
 				<action_id>select_0</action_id>
 			</jump>
 		</option>
+		<option>
+			<text>好麻烦，打晕他吧。</text>
+			<jump>
+				<action>SELECT</action>
+				<source_path>src/xml/select.xml</source_path>
+				<action_id>select_0</action_id>
+			</jump>
+		</option>
+		<option>
+			<text>听到异动，好像有人来了。</text>
+			<jump>
+				<action>PLOT</action>
+				<source_path>src/xml/dialogue_0.xml</source_path>
+				<action_id>dialogue_0</action_id>
+			</jump>
+		</option>
 	</select>
+	
 </selects>

@@ -13,6 +13,7 @@ public class StateControl {
 	public static void next_action(){
 		switch(XMLData.next_action){
 		case ViewData.PLOT:{start(ViewData.plot);break;}
+		case ViewData.SELECT:{start(ViewData.select);break;}
 		}
 	}
 	

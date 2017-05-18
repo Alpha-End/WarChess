@@ -16,6 +16,9 @@ public class KeyListener{
 		if(ViewData.state==ViewData.PLOT){
 			getKeyInPlot(e);
 		}
+		if(ViewData.state==ViewData.SELECT){
+			getKeyInSelect(e);
+		}
 		/*
 		if(e.getKeyCode()==KeyEvent.VK_X){
 			ViewData.state=ViewData.PLOT;
@@ -31,6 +34,19 @@ public class KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode()==KeyEvent.VK_X){
 			ViewData.plot.nextDialogue();
+		}
+	}
+	private static void getKeyInSelect(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+		if(e.getKeyCode()==KeyEvent.VK_UP){
+			ViewData.select.UP_KEY();;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_DOWN){
+			ViewData.select.DOWN_KEY();;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_X){
+			ViewData.select.selectOption();
 		}
 	}
 	private static void getKeyInWelcome(KeyEvent e) {

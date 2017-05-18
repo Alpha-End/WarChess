@@ -3,11 +3,17 @@ package entity;
 import data.ViewData;
 import data.XMLData;
 
-public class Jump {
+public class Jump {//跳转实体
 	String next_action;
 	String next_action_path;
 	String next_action_id;
 	
+	@Override
+	public String toString() {
+		return "Jump [next_action=" + next_action + ", next_action_path=" + next_action_path + ", next_action_id="
+				+ next_action_id + "]";
+	}
+
 	public void jumpThisAction(){
 		switch(next_action){
 		case "SELECT":{XMLData.next_action=ViewData.SELECT;break;}
