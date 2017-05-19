@@ -18,6 +18,7 @@ public class Jump {//跳转实体
 		switch(next_action){
 		case "SELECT":{XMLData.next_action=ViewData.SELECT;break;}
 		case "PLOT":{XMLData.next_action=ViewData.PLOT;break;}
+		case "GAME":{XMLData.next_action=ViewData.GAME;break;}
 		}
 		XMLData.next_action_id=this.next_action_id;
 		XMLData.next_action_path=this.next_action_path;

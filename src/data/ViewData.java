@@ -2,6 +2,7 @@ package data;
 
 import java.awt.Font;
 
+import view.Game;
 import view.Load;
 import view.MainPanel;
 import view.Plot;
@@ -17,7 +18,7 @@ public class ViewData {
 	public static final Font DIALOGUEFONT=new Font("黑体",Font.LAYOUT_RIGHT_TO_LEFT,25);//发言者字体格式
 	public static final Font OPTIONFONT=new Font("黑体",Font.BOLD,40);//选项字体格式
 	
-	public static final int WELCOME=0,LOAD=1,SAVE=2,NEWGAME=3,PLOT=4,SELECT=5;//游戏状态
+	public static final int WELCOME=0,LOAD=1,SAVE=2,NEWGAME=3,PLOT=4,SELECT=5,GAME=6;//游戏状态
 	public static final int INTERVAL_TIME=100;//LOADING等界面绘制间隔时间
 	
 	public static int state=0;
@@ -32,5 +33,6 @@ public class ViewData {
 	public static Plot plot;
 	public static Load load;
 	public static Select select;
+	public static Game game;
 	
 }
