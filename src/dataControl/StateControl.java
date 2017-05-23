@@ -14,6 +14,7 @@ public class StateControl {
 		switch(XMLData.next_action){
 		case ViewData.PLOT:{start(ViewData.plot);break;}
 		case ViewData.SELECT:{start(ViewData.select);break;}
+		case ViewData.GAME:{start(ViewData.game);break;}
 		}
 	}
 	

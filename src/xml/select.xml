@@ -21,9 +21,9 @@
 			</jump>
 		</option>
 		<option>
-			<text>听到异动，好像有人来了。</text>
+			<text>好像有人来了，先躲避一下吧。</text>
 			<jump>
-				<action>PLOT</action>
+				<action>GAME</action>
 				<source_path>src/xml/dialogue_0.xml</source_path>
 				<action_id>dialogue_0</action_id>
 			</jump>

@@ -33,7 +33,12 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 	int dialogueindex;
 	int plotH,plotW,plotX,plotY;
 	BufferedImage background;
+	ArrayList<BufferedImage> button_unpressed,button_pressed;
+	int pressed_index,unpressed_index;
+	boolean key_pressed;
 	Jump jump;
+	long lastpainttime;//上一次界面绘制时间
+	BufferedImage button_img;
 	
 	Font speakerfont;
 	Font dialogfont;
@@ -45,6 +50,18 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 	public Plot() {
 		// TODO Auto-generated constructor stub
 		setFormat();
+		button_unpressed=new ArrayList<>();
+		button_pressed=new ArrayList<>();
+		pressed_index=0;
+		unpressed_index=0;
+		key_pressed=false;
+		lastpainttime=System.currentTimeMillis();
+		for(int i=0;i<XMLData.BUTTON_KEY_UNPRESSED_IMG_PATH.length;i++){
+			button_unpressed.add(R.load(XMLData.BUTTON_KEY_UNPRESSED_IMG_PATH[i]));
+		}
+		for(int i=0;i<XMLData.BUTTON_KEY_PRESSED_IMG_PATH.length;i++){
+			button_pressed.add(R.load(XMLData.BUTTON_KEY_PRESSED_IMG_PATH[i]));
+		}
 	}
 	@Override
 	public void paint(Graphics e) {
@@ -61,7 +78,24 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 			paintDialogue(e);
 		}*/
 		paintDialogue(e);
+		paintButton(e);
 	}
+	
+	public void paintButton(Graphics e){
+		if(System.currentTimeMillis()-lastpainttime>ViewData.INTERVAL_TIME){
+			lastpainttime=System.currentTimeMillis();
+			if(key_pressed){
+				button_img=button_pressed.get((pressed_index++)%button_pressed.size());
+			}
+			else{
+				button_img=button_unpressed.get((unpressed_index++)%button_unpressed.size());
+			}
+		}
+		e.drawImage(button_img, plotX+plotW-button_img.getWidth()/2-20, plotY+plotH-button_img.getHeight()/2-20, null);
+	}
+	
+	
+	//public void keyPre
 	
 	public void nextDialogue(){
 		if(dialogueindex<dialist.size()-1){//本段剧情台词没念完

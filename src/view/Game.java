@@ -2,6 +2,7 @@ package view;
 
 import java.awt.Graphics;
 
+import data.ViewData;
 import entity.Map;
 import interFace.PaintInterface;
 
@@ -41,7 +42,8 @@ public class Game implements PaintInterface,Runnable,interFace.StateControl{
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
-		
+		ViewData.state=ViewData.GAME;
+		System.out.println("success");
 	}
 	@Override
 	public void end() {

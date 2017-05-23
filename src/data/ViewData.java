@@ -19,7 +19,7 @@ public class ViewData {
 	public static final Font OPTIONFONT=new Font("黑体",Font.BOLD,40);//选项字体格式
 	
 	public static final int WELCOME=0,LOAD=1,SAVE=2,NEWGAME=3,PLOT=4,SELECT=5,GAME=6;//游戏状态
-	public static final int INTERVAL_TIME=100;//LOADING等界面绘制间隔时间
+	public static final int INTERVAL_TIME=85;//LOADING,WELCOME等界面绘制间隔时间
 	
 	public static int state=0;
 	
