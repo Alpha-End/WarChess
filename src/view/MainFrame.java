@@ -15,6 +15,7 @@ public class MainFrame extends JFrame{
 		this.setSize(ViewData.FRAMEW, ViewData.FRAMEH);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setUndecorated(true);
 		this.setResizable(false);
 		this.addKeyListenerToKeyThread();
 		

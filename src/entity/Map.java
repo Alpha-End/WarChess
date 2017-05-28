@@ -1,9 +1,15 @@
 package entity;
 
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+
+import data.ViewData;
 
 public class Map {
 	public Map(int h,int w,int[][] l){
+		x=0;y=0;
 		width=w;
 		height=h;
 		location=l;
@@ -21,12 +27,22 @@ public class Map {
 	}
 	int height;
 	int width;
+	int x,y;//当地图大于显示框,x y表示地图最左上角的单位
 	int[][] location,figurelocation;
 	public int roundstate;//当前回合为红方/蓝方回合
 	public static final int BLUE=-1,RED=1,EMPTY=0;
 	public static final int UNREACH=0,MAXDISTANCE=100,WAY=1,BARRIER=2;//普通路，障碍路，普通单位不可达，全单位不可达,蓝方单位，红方单位
 	int[][] reachable;
+	BufferedImage map_img;
+	
 	static final int[] xstep={1,-1,0,0},ystep={0,0,1,-1};
+	
+	public void figureRemove(int x0,int y0,int x1,int y1,int camp){
+		if(reachable[x1][y1]>=0){
+			figurelocation[x0][y0]=EMPTY;
+			figurelocation[x1][y1]=camp;
+		}
+	}
 	public int getHeight() {
 		return height;
 	}
@@ -44,6 +60,28 @@ public class Map {
 	}
 	public void setLocation(int[][] location) {
 		this.location = location;
+	}
+	public BufferedImage getMap_img() {
+		return map_img;
+	}
+	public void setMap_img(BufferedImage map_img) {
+		this.map_img = map_img;
+	}
+	public void paint(Graphics e){
+		e.drawImage(map_img, -x*ViewData.MAP_PIXEL,- y*ViewData.MAP_PIXEL,null);
+	}
+	
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
 	}
 	public int[][] getReachable(int x,int y,int step){//通过单位位置及移动力获得可达范围
 		reachable=new int[height][width];

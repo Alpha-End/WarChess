@@ -63,6 +63,13 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 			button_pressed.add(R.load(XMLData.BUTTON_KEY_PRESSED_IMG_PATH[i]));
 		}
 	}
+	
+	public void keyPressed(){
+		key_pressed=true;
+	}
+	public void keyReleased(){
+		key_pressed=false;
+	}
 	@Override
 	public void paint(Graphics e) {
 		// TODO Auto-generated method stub
@@ -91,7 +98,7 @@ public class Plot implements PaintInterface,Runnable,interFace.StateControl{
 				button_img=button_unpressed.get((unpressed_index++)%button_unpressed.size());
 			}
 		}
-		e.drawImage(button_img, plotX+plotW-button_img.getWidth()/2-20, plotY+plotH-button_img.getHeight()/2-20, null);
+		e.drawImage(button_img, plotX+plotW-button_img.getWidth()/2-40, plotY+plotH-button_img.getHeight()/2-40, null);
 	}
 	
 	

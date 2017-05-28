@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <dia>
+	<dialogues id="dialogue_1">
+		<background>
+			<img_path>img/classroom_1.jpg</img_path>
+		</background>
+	</dialogues>
 	<dialogues id="dialogue_0">
 		<background>
 			<img_path>img/classroom_1.jpg</img_path>

@@ -19,6 +19,10 @@ public class KeyListener{
 		if(ViewData.state==ViewData.SELECT){
 			getKeyInSelect(e);
 		}
+		
+		if(ViewData.state==ViewData.GAME){
+			ViewData.game.getKey(e);
+		}
 		/*
 		if(e.getKeyCode()==KeyEvent.VK_X){
 			ViewData.state=ViewData.PLOT;
@@ -34,6 +38,7 @@ public class KeyListener{
 		// TODO Auto-generated method stub
 		if(e.getKeyCode()==KeyEvent.VK_X){
 			ViewData.plot.nextDialogue();
+			ViewData.plot.keyPressed();
 		}
 	}
 	private static void getKeyInSelect(KeyEvent e) {
@@ -61,6 +66,14 @@ public class KeyListener{
 	}
 	public static void releaseKey(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(ViewData.state==ViewData.PLOT){
+			releaseKeyInPlot(e);
+		}
+	}
+	private static void releaseKeyInPlot(KeyEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getKeyCode()==KeyEvent.VK_X){
+			ViewData.plot.keyReleased();
+		}
 	}
 }
