@@ -5,8 +5,11 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+import javax.swing.text.View;
+
 import data.ViewData;
 import data.XMLData;
+import entity.Cell;
 import entity.Figure;
 import entity.Map;
 import util.R;
@@ -17,20 +20,37 @@ public class CursorMove {
 	Map map;
 	ArrayList<Figure> bluefigurelist,redfigurelist;
 	ArrayList<BufferedImage> cursor_img;
+	
+	Cell cell;
+	Figure selectedfigure;
+	int[][] figurereachable;
 	long lastpainttime;//上一次界面绘制时间
 	
+	boolean cursormoving;
+	int information_box_x,information_box_y;
+	BufferedImage information_box;
+	
 	int cursorindex=0;
+	int state;
+	final int CURSORMOVE=0,FIGUREMOVE=1;
+	
 	public CursorMove(Game g){
 		map=g.map;
 		bluefigurelist=g.bluefigurelist;
 		redfigurelist=g.redfigurelist;
-		
+		cursormoving=false;
 		cursor_img=new ArrayList<>();
 		for(int i=0;i<XMLData.CURSOR_IMG_PATH.length;i++){
 			cursor_img.add(R.load(XMLData.CURSOR_IMG_PATH[i]));
 		}
 		
 		x=0;y=0;
+		
+		state=CURSORMOVE;
+		information_box=R.load(XMLData.INFORMATION_BOX_IMG_PATH);
+		information_box_x=ViewData.FRAMEW/12;
+		information_box_y=ViewData.FRAMEH/16;
+		
 		try{
 			Figure firstfigure=bluefigurelist.get(0);
 			x=firstfigure.getX();
@@ -50,9 +70,57 @@ public class CursorMove {
 			lastpainttime=System.currentTimeMillis();
 			cursorindex++;
 		}
+		
+		if(state==CURSORMOVE){			
+			paintInformationBox(g);
+		}
+		if(state==FIGUREMOVE){
+			paintReachable(g);
+		}
+	}
+	void paintReachable(Graphics g){
+		
+	}
+	void paintInformationBox(Graphics g){
+		if(!cursormoving&&cell!=null&&cell.isFigure()){
+			
+			g.drawImage(information_box, information_box_x, information_box_y, null);
+			g.setFont(ViewData.INFORMATIONBOXFONT);
+			String s=cell.getFigure().getName();
+			g.drawString(s, information_box_x+information_box.getWidth()/20, information_box_y+25+ViewData.INFORMATIONBOXFONT.getSize());
+			s="HP "+cell.getFigure().getHp()+"/"+cell.getFigure().getHpmax();
+			g.drawString(s, information_box_x+information_box.getWidth()/20, information_box_y+25+ViewData.INFORMATIONBOXFONT.getSize()*2);
+			s="攻击力: "+cell.getFigure().getAttack();
+			g.drawString(s, information_box_x+information_box.getWidth()/20, information_box_y+25+ViewData.INFORMATIONBOXFONT.getSize()*3);
+			s="守备: "+cell.getFigure().getDefense();
+			g.drawString(s, information_box_x+information_box.getWidth()/20, information_box_y+25+ViewData.INFORMATIONBOXFONT.getSize()*4);
+			
+		}
+	}
+	public void cursorMove(KeyEvent e){
+		if(cursormoving){
+			return;
+		}
+		cursormoving=true;
+		
+		if(state==CURSORMOVE){
+			moveCursor(e);			
+		}
+		else if(state==FIGUREMOVE){
+			moveFigure(e);
+		}
+		
+		
+		cell=map.getCell(x, y);
+		cursormoving=false;
+	}
+	void moveFigure(KeyEvent e){
+		if(e.getKeyCode()==KeyEvent.VK_Z){
+			state=CURSORMOVE;
+		}
 	}
 	
-	public void cursorMove(KeyEvent e){
+	void moveCursor(KeyEvent e){
 		if(e.getKeyCode()==KeyEvent.VK_LEFT){
 			if(x>0){
 				x--;
@@ -96,6 +164,24 @@ public class CursorMove {
 				}
 			}
 		}
+		
+		if(e.getKeyCode()==KeyEvent.VK_X){
+			cell=map.getCell(x, y);
+			if(cell.isFigure()){				
+				selectedfigure=cell.getFigure();
+				state=FIGUREMOVE;
+				
+				
+				
+
+				figurereachable=map.getReachable(selectedfigure.getX(),selectedfigure.getY(),selectedfigure.getDistance());
+				/*for(int i=0;i<map.getWidth();i++){
+					for(int j=0;j<map.getHeight();j++){
+						System.out.print(" "+array[i][j]);
+					}
+					System.out.print("\n");
+				}*/
+			}
+		}
 	}
-	
 }

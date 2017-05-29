@@ -17,6 +17,7 @@ public class ViewData {
 	public static final Font SPEAKERFONT=new Font("黑体",Font.BOLD,35);//发言者字体格式
 	public static final Font DIALOGUEFONT=new Font("黑体",Font.LAYOUT_RIGHT_TO_LEFT,25);//发言者字体格式
 	public static final Font OPTIONFONT=new Font("黑体",Font.BOLD,40);//选项字体格式
+	public static final Font INFORMATIONBOXFONT=new Font("黑体",Font.BOLD,35);//人物信息栏字体格式
 	public static final int MAP_PIXEL=128;//地图一单位的长宽
 	
 	public static final int WELCOME=0,LOAD=1,SAVE=2,NEWGAME=3,PLOT=4,SELECT=5,GAME=6;//游戏状态

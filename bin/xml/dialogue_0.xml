@@ -1,19 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <dia>
-	<dialogues id="dialogue_1">
-		<background>
-			<img_path>img/classroom_1.jpg</img_path>
-		</background>
-	</dialogues>
 	<dialogues id="dialogue_0">
 		<background>
-			<img_path>img/classroom_1.jpg</img_path>
+			<img_path>img/background_0.png</img_path>
 		</background>
+		<dialogue>
+			<content> 一栋幽静典雅的楼内，温婉的女子声音轻轻响起。</content>
+		</dialogue>
 		<dialogue>
 			<speaker>华芸</speaker>
 			<content>「放松心神，不要刻意约束你的思维，顺其自然，约束自己的呼吸……」</content>
 		</dialogue>
+		<dialogue>
+			<content> 与此同时，楼内十余名年龄大概十二三岁的孩子，紧闭双眼，正襟危坐，伴随着身前一名二十三四岁的女子的话声，神色渐变，仿佛置身梦幻之中。</content>
+		</dialogue>
+		<dialogue>
+			<content>  对于外人而言，这样的场面看起来实在诡异，然而在阳成学院中的学生来看，这一幕却再常见不过。</content>
+		</dialogue>
+		<dialogue>
+			<content>   这就是筑梦师的修行。</content>
+		</dialogue>
+		<dialogue>
+			<content>  与那些挥汗如雨，热血澎湃的武士不同，筑梦师修炼梦境，并从梦境中提取力量。学员们从最初的静心开始，历经醒梦，空明，造物，拟人，王国，虚实……等境界的修行，最终随心所欲，无所不能。</content>
+		</dialogue>
+		<dialogue>
+			<content>  高明的筑梦师，一人便是一个王国。</content>
+		</dialogue>
+		<dialogue>
+			<content>  楼中的孩子们当然没有那么高的修为，作为阳成学院新一届的新生，他们才刚刚开始筑梦术的修行。而经过三周多时间，大部分学员都已度过静心阶段，进入了醒梦的后期，在导师的帮助下，可以白日做梦，</content>
+		</dialogue>
+		<dialogue>
+			<content>  随时随地释放梦境。进度之快，足可让一般的筑梦师艳羡不已。</content>
+		</dialogue>
+		<dialogue>
+			<content>   阳成学院作为大陆第一的筑梦师学院，对学员的挑选非常严格，天赋资质不足，哪怕是再显赫的贵族世家的子弟也无缘得门而入。而与此同时，学院也为学生们提供了最好的师资力量，最佳的修业环境。</content>
+		</dialogue>
+		<dialogue>
+			<content>  而在楼内出声引导学员的年轻女子，正是学院指定的导师，年纪虽轻，却是难得一见的修行天才，因此被学院破例委以重任。</content>
+		</dialogue>
+		<jump>
+				<action>PLOT</action>
+				<source_path>src/xml/dialogue_0.xml</source_path>
+				<action_id>dialogue_1</action_id>
+		</jump>
+	</dialogues>
+	<dialogues id="dialogue_1">
+		<background>
+			<img_path>img/classroom_1.jpg</img_path>
+		</background>
 		<dialogue>
 			<speaker>华芸</speaker>
 			<content>「今天的修行就先到这里，大家的表现都很不错，回去以后注意休息，不要疲劳修行，记住了没有？」</content>

@@ -13,22 +13,26 @@ public class Map {
 		width=w;
 		height=h;
 		location=l;
-		figurelocation=new int[h][w];
-		for(int i=0;i<h;i++){
-			for(int j=0;j<w;j++){
-				figurelocation[i][j]=EMPTY;
+		figurelocation=new Figure[w][h];
+		for(int i=0;i<w;i++){
+			for(int j=0;j<h;j++){
+				figurelocation[i][j]=null;
 			}
 		}
 	}
-	public void addFigure(int x,int y,int figurestate){
-		if(figurelocation[x][y]==EMPTY){
-			figurelocation[x][y]=figurestate;
+	public void addFigure(int x,int y,Figure f){
+		if(figurelocation[x][y]!=null){
+			
+		}
+		else{
+			figurelocation[x][y]=f;
 		}
 	}
 	int height;
 	int width;
 	int x,y;//当地图大于显示框,x y表示地图最左上角的单位
-	int[][] location,figurelocation;
+	int[][] location;
+	Figure[][] figurelocation;
 	public int roundstate;//当前回合为红方/蓝方回合
 	public static final int BLUE=-1,RED=1,EMPTY=0;
 	public static final int UNREACH=0,MAXDISTANCE=100,WAY=1,BARRIER=2;//普通路，障碍路，普通单位不可达，全单位不可达,蓝方单位，红方单位
@@ -37,10 +41,10 @@ public class Map {
 	
 	static final int[] xstep={1,-1,0,0},ystep={0,0,1,-1};
 	
-	public void figureRemove(int x0,int y0,int x1,int y1,int camp){
+	public void figureRemove(int x0,int y0,int x1,int y1,Figure f){
 		if(reachable[x1][y1]>=0){
-			figurelocation[x0][y0]=EMPTY;
-			figurelocation[x1][y1]=camp;
+			figurelocation[x0][y0]=null;
+			figurelocation[x1][y1]=f;
 		}
 	}
 	public int getHeight() {
@@ -84,9 +88,9 @@ public class Map {
 		this.y = y;
 	}
 	public int[][] getReachable(int x,int y,int step){//通过单位位置及移动力获得可达范围
-		reachable=new int[height][width];
-		for(int i=0;i<height;i++){
-			for(int j=0;j<width;j++){
+		reachable=new int[width][height];
+		for(int i=0;i<width;i++){
+			for(int j=0;j<height;j++){
 				reachable[i][j]=-1;
 			}
 		}
@@ -103,7 +107,7 @@ public class Map {
 		return reachable;
 	}
 	int DFS(int x,int y,int step){
-		if(x<0||y<0||x>=height||y>=width){
+		if(x<0||y<0||x>=width||y>=height){
 			return 0;
 		}
 		step-=stepDistance(x, y);
@@ -118,7 +122,15 @@ public class Map {
 	}
 	
 	int stepDistance(int x,int y){
-		if(roundstate*figurelocation[x][y]>=0){//若当前回合与当前位置为同一方
+		if(figurelocation[x][y]==null){
+			if(location[x][y]==WAY){
+				return 1;
+			}
+			if(location[x][y]==BARRIER){
+				return 2;
+			}
+		}
+		else if(roundstate*figurelocation[x][y].getCamp()>0){//若当前回合与当前位置为同一方
 			if(location[x][y]==WAY){
 				return 1;
 			}
@@ -128,4 +140,23 @@ public class Map {
 		}
 		return MAXDISTANCE;
 	}
+	
+	
+	public Cell getCell(int relative_x,int relative_y){
+		
+		
+		
+		int x=relative_x+this.x,y=relative_y+this.y;
+		
+		//System.out.println("x="+x+" y="+y);
+		//System.out.println(location[10][5]);
+		Cell cell;
+		cell=new Cell(location[x][y]);
+		if(figurelocation[x][y]!=null){
+			cell=new Cell(figurelocation[x][y]);
+		}
+		
+		return cell;
+	}
+
 }
