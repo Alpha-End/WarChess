@@ -26,12 +26,18 @@ public class Figure {
 		this.moveable=true;
 	}
 	
-	
+	public void moveTo(int x,int y){
+		if(moveable){
+			this.x=x;
+			this.y=y;
+			moveable=false;
+		}
+	}
 	
 	public boolean isMoveable() {
 		return moveable;
 	}
-	public void setMoveable(boolean moveable) {
+	void setMoveable(boolean moveable) {
 		this.moveable = moveable;
 	}
 	public int getX() {

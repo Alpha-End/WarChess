@@ -14,4 +14,5 @@ public class XMLData {
 	public final static String[] BUTTON_KEY_PRESSED_IMG_PATH={"img/button_keyx_pressed.png"};
 	public final static String[] CURSOR_IMG_PATH={"img/cursor_0.png","img/cursor_0.png","img/cursor_0.png","img/cursor_0.png","img/cursor_1.png","img/cursor_1.png"};
 	public final static String INFORMATION_BOX_IMG_PATH="img/information_box_0.png";
+	public final static String REACHABLE_BOX_IMG_PATH="img/reachable.png";
 }

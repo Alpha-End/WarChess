@@ -72,10 +72,10 @@ public class Game implements PaintInterface,Runnable,interFace.StateControl{
 	public void paint(Graphics e) {
 		// TODO Auto-generated method stub
 		map.paint(e);
-		paintFigure(e);
 		switch(gamestate){
 		case CURSORMOVE:{cursormove.paint(e);}
 		}
+		paintFigure(e);
 	}
 	
 	void paintFigure(Graphics e){

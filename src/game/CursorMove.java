@@ -29,10 +29,11 @@ public class CursorMove {
 	boolean cursormoving;
 	int information_box_x,information_box_y;
 	BufferedImage information_box;
+	BufferedImage reachable_box;
 	
 	int cursorindex=0;
 	int state;
-	final int CURSORMOVE=0,FIGUREMOVE=1;
+	final int CURSORMOVE=0,FIGUREMOVE=1,LOADING=2;
 	
 	public CursorMove(Game g){
 		map=g.map;
@@ -51,6 +52,7 @@ public class CursorMove {
 		information_box_x=ViewData.FRAMEW/12;
 		information_box_y=ViewData.FRAMEH/16;
 		
+		reachable_box=R.hyalineProcess(R.load(XMLData.REACHABLE_BOX_IMG_PATH), ViewData.MAP_PIXEL, ViewData.MAP_PIXEL, 0, 0, 6);
 		try{
 			Figure firstfigure=bluefigurelist.get(0);
 			x=firstfigure.getX();
@@ -61,11 +63,6 @@ public class CursorMove {
 	}
 	
 	public void paint(Graphics g){
-		BufferedImage cur_img=cursor_img.get(cursorindex%cursor_img.size());
-		int cur_x,cur_y;
-		cur_x=(ViewData.MAP_PIXEL-cur_img.getWidth())/2+x*ViewData.MAP_PIXEL;
-		cur_y=(ViewData.MAP_PIXEL-cur_img.getHeight())/2+y*ViewData.MAP_PIXEL;
-		g.drawImage(cur_img,cur_x,cur_y,null);
 		if(System.currentTimeMillis()-lastpainttime>ViewData.INTERVAL_TIME){
 			lastpainttime=System.currentTimeMillis();
 			cursorindex++;
@@ -77,9 +74,32 @@ public class CursorMove {
 		if(state==FIGUREMOVE){
 			paintReachable(g);
 		}
+		BufferedImage cur_img=cursor_img.get(cursorindex%cursor_img.size());
+		int cur_x,cur_y;
+		cur_x=(ViewData.MAP_PIXEL-cur_img.getWidth())/2+x*ViewData.MAP_PIXEL;
+		cur_y=(ViewData.MAP_PIXEL-cur_img.getHeight())/2+y*ViewData.MAP_PIXEL;
+		g.drawImage(cur_img,cur_x,cur_y,null);
+		
 	}
 	void paintReachable(Graphics g){
+		int x=0,y=0;
 		
+		for(int i=map.getX();i<map.getX()+(ViewData.FRAMEW/ViewData.MAP_PIXEL);i++){
+			for(int j=map.getY();j<map.getY()+(ViewData.FRAMEH/ViewData.MAP_PIXEL);j++){
+				
+				if(figurereachable[i][j]>=0){
+					g.drawImage(reachable_box, x*ViewData.MAP_PIXEL, y*ViewData.MAP_PIXEL, null);
+				}
+				
+				y++;
+			}
+			x++;
+			y=0;
+		}
+		
+	}
+	boolean isReachable(){
+		return figurereachable[x+map.getX()][y+map.getY()]>=0;
 	}
 	void paintInformationBox(Graphics g){
 		if(!cursormoving&&cell!=null&&cell.isFigure()){
@@ -108,6 +128,7 @@ public class CursorMove {
 		}
 		else if(state==FIGUREMOVE){
 			moveFigure(e);
+			moveCursor(e);	
 		}
 		
 		
@@ -117,6 +138,13 @@ public class CursorMove {
 	void moveFigure(KeyEvent e){
 		if(e.getKeyCode()==KeyEvent.VK_Z){
 			state=CURSORMOVE;
+		}
+		
+		
+		if(e.getKeyCode()==KeyEvent.VK_X&&selectedfigure.isMoveable()){
+			
+			map.figureRemove(selectedfigure.getX(), selectedfigure.getY(), x+map.getX(), y+map.getY(), selectedfigure);
+			selectedfigure.moveTo(x+map.getX(), y+map.getY());
 		}
 	}
 	
@@ -165,22 +193,25 @@ public class CursorMove {
 			}
 		}
 		
-		if(e.getKeyCode()==KeyEvent.VK_X){
+		if(state==CURSORMOVE&&e.getKeyCode()==KeyEvent.VK_X){
 			cell=map.getCell(x, y);
-			if(cell.isFigure()){				
+			if(cell.isFigure()&&cell.getFigure().isMoveable()){				
 				selectedfigure=cell.getFigure();
-				state=FIGUREMOVE;
 				
 				
 				
 
 				figurereachable=map.getReachable(selectedfigure.getX(),selectedfigure.getY(),selectedfigure.getDistance());
-				/*for(int i=0;i<map.getWidth();i++){
+				
+				/*
+				for(int i=0;i<map.getWidth();i++){
 					for(int j=0;j<map.getHeight();j++){
-						System.out.print(" "+array[i][j]);
+						System.out.print(" "+figurereachable[i][j]);
 					}
 					System.out.print("\n");
-				}*/
+				}
+				*/
+				state=FIGUREMOVE;
 			}
 		}
 	}
