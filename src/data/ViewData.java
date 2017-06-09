@@ -19,6 +19,7 @@ public class ViewData {
 	public static final Font OPTIONFONT=new Font("黑体",Font.BOLD,40);//选项字体格式
 	public static final Font INFORMATIONBOXFONT=new Font("黑体",Font.BOLD,35);//人物信息栏字体格式
 	public static final Font ACTIONSELECTBOXFONT=new Font("黑体",Font.BOLD,35);//行动选择栏字体格式
+	public static final Font ENERMYSELECTBOXFONT=new Font("黑体",Font.BOLD,35);//行动选择栏字体格式
 	
 	public static final int MAP_PIXEL=128;//地图一单位的长宽
 	

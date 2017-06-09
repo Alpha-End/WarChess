@@ -2,6 +2,7 @@ package entity;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
@@ -142,7 +143,17 @@ public class Map {
 	}
 	
 	
-	
+	public void refreshMap(){
+		for(int i=0;i<width;i++){
+			for(int j=0;j<height;j++){
+				if(this.figurelocation[i][j]!=null){					
+					if(!this.figurelocation[i][j].isAlive()){
+						this.figurelocation[i][j]=null;
+					}
+				}
+			}
+		}
+	}
 	public boolean figureHaveEnermy(Figure figure,int relative_x,int relative_y){
 		int[] addx={-1,1,0,0};
 		int[] addy={0,0,1,-1};
@@ -155,7 +166,18 @@ public class Map {
 		return false;
 	}
 	
-
+	public ArrayList<Figure> getEnermy(Figure figure,int relative_x,int relative_y){
+		int[] addx={-1,1,0,0};
+		int[] addy={0,0,1,-1};
+		ArrayList<Figure> enermylist=new ArrayList<>();
+		for(int i=0;i<4;i++){
+			Cell cell=this.getCell(relative_x+addx[i], relative_y+addy[i]);
+			if(cell.isfigure&&(figure.camp!=cell.getFigure().camp)){
+				enermylist.add(cell.getFigure());
+			}
+		}
+		return enermylist;
+	}
 	
 	public Cell getCell(int relative_x,int relative_y){
 		

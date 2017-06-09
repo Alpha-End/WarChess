@@ -11,6 +11,7 @@ import data.ViewData;
 import data.XMLData;
 import entity.ActionSelect;
 import entity.Cell;
+import entity.EnermySelect;
 import entity.Figure;
 import entity.Map;
 import util.R;
@@ -33,6 +34,7 @@ public class CursorMove {
 	BufferedImage reachable_box;
 	
 	ActionSelect as;
+	EnermySelect es;
 	
 	int cursorindex=0;
 	int state;
@@ -86,7 +88,9 @@ public class CursorMove {
 		if(state==ACTIONSELECT){
 			as.paint(g, ViewData.FRAMEW*2/3, ViewData.FRAMEH/4);
 		}
-		
+		if(state==ENERMYSELECT){
+			es.paint(g, ViewData.FRAMEW*2/3, ViewData.FRAMEH/4);
+		}
 	}
 	void paintReachable(Graphics g){
 		int x=0,y=0;
@@ -140,12 +144,33 @@ public class CursorMove {
 		else if(state==ACTIONSELECT){
 			actionSelect(e);
 		}
+		else if(state==ENERMYSELECT){
+			enermySelect(e);
+		}
 		
 		
 		cell=map.getCell(x, y);
 		cursormoving=false;
 	}
 	
+	public void enermySelect(KeyEvent e){
+		if(e.getKeyCode()==KeyEvent.VK_Z){
+			state=ACTIONSELECT;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_X){
+			es.attackEnermy();
+			map.refreshMap();
+			map.figureRemove(selectedfigure.getX(), selectedfigure.getY(), x+map.getX(), y+map.getY(), selectedfigure);
+			selectedfigure.moveTo(x+map.getX(), y+map.getY());
+			state=CURSORMOVE;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_UP){
+			es.lastEnermy();
+		}
+		if(e.getKeyCode()==KeyEvent.VK_DOWN){
+			es.nextEnermy();
+		}
+	}
 	
 	public void actionSelect(KeyEvent e){
 		if(e.getKeyCode()==KeyEvent.VK_Z){
@@ -163,6 +188,11 @@ public class CursorMove {
 				selectedfigure.moveTo(x+map.getX(), y+map.getY());
 				state=CURSORMOVE;
 			}
+			if(as.index==ActionSelect.ATTACK){
+				es=new EnermySelect(selectedfigure);
+				es.addEnermyList(map.getEnermy(selectedfigure, x, y));
+				state=ENERMYSELECT;
+			}
 		}
 	}
 	
@@ -174,7 +204,7 @@ public class CursorMove {
 		}
 		
 		
-		if(e.getKeyCode()==KeyEvent.VK_X&&selectedfigure.isMoveable()){
+		if(e.getKeyCode()==KeyEvent.VK_X&&selectedfigure.isMoveable()&&figurereachable[x+map.getX()][y+map.getY()]>=0){
 			
 			//map.figureRemove(selectedfigure.getX(), selectedfigure.getY(), x+map.getX(), y+map.getY(), selectedfigure);
 			//selectedfigure.moveTo(x+map.getX(), y+map.getY());
@@ -239,7 +269,7 @@ public class CursorMove {
 		
 		if(state==CURSORMOVE&&e.getKeyCode()==KeyEvent.VK_X){
 			cell=map.getCell(x, y);
-			if(cell.isFigure()&&cell.getFigure().isMoveable()){				
+			if(cell.isFigure()&&cell.getFigure().getCamp()==map.BLUE&&cell.getFigure().isMoveable()){				
 				selectedfigure=cell.getFigure();
 				
 				

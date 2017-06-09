@@ -34,6 +34,19 @@ public class Figure {
 		}
 	}
 	
+	public void attackAnotherFigure(Figure enermy){
+		enermy.hp-=this.attack-enermy.defense;
+		if(enermy.hp<=0){
+			return;
+		}
+		this.hp-=enermy.attack-this.defense;
+	}
+	public boolean isAlive(){
+		if(hp>=0){
+			return true;
+		}
+		return false;
+	}
 	public boolean isMoveable() {
 		return moveable;
 	}
