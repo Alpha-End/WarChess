@@ -142,6 +142,21 @@ public class Map {
 	}
 	
 	
+	
+	public boolean figureHaveEnermy(Figure figure,int relative_x,int relative_y){
+		int[] addx={-1,1,0,0};
+		int[] addy={0,0,1,-1};
+		for(int i=0;i<4;i++){
+			Cell cell=this.getCell(relative_x+addx[i], relative_y+addy[i]);
+			if(cell.isfigure&&(figure.camp!=cell.getFigure().camp)){
+				return true;
+			}
+		}
+		return false;
+	}
+	
+
+	
 	public Cell getCell(int relative_x,int relative_y){
 		
 		

@@ -9,6 +9,7 @@ import javax.swing.text.View;
 
 import data.ViewData;
 import data.XMLData;
+import entity.ActionSelect;
 import entity.Cell;
 import entity.Figure;
 import entity.Map;
@@ -31,9 +32,11 @@ public class CursorMove {
 	BufferedImage information_box;
 	BufferedImage reachable_box;
 	
+	ActionSelect as;
+	
 	int cursorindex=0;
 	int state;
-	final int CURSORMOVE=0,FIGUREMOVE=1,LOADING=2;
+	final int CURSORMOVE=0,FIGUREMOVE=1,LOADING=2,ACTIONSELECT=3,ENERMYSELECT=4;
 	
 	public CursorMove(Game g){
 		map=g.map;
@@ -68,9 +71,6 @@ public class CursorMove {
 			cursorindex++;
 		}
 		
-		if(state==CURSORMOVE){			
-			paintInformationBox(g);
-		}
 		if(state==FIGUREMOVE){
 			paintReachable(g);
 		}
@@ -79,6 +79,13 @@ public class CursorMove {
 		cur_x=(ViewData.MAP_PIXEL-cur_img.getWidth())/2+x*ViewData.MAP_PIXEL;
 		cur_y=(ViewData.MAP_PIXEL-cur_img.getHeight())/2+y*ViewData.MAP_PIXEL;
 		g.drawImage(cur_img,cur_x,cur_y,null);
+		
+		if(state==CURSORMOVE){			
+			paintInformationBox(g);
+		}
+		if(state==ACTIONSELECT){
+			as.paint(g, ViewData.FRAMEW*2/3, ViewData.FRAMEH/4);
+		}
 		
 	}
 	void paintReachable(Graphics g){
@@ -130,11 +137,37 @@ public class CursorMove {
 			moveFigure(e);
 			moveCursor(e);	
 		}
+		else if(state==ACTIONSELECT){
+			actionSelect(e);
+		}
 		
 		
 		cell=map.getCell(x, y);
 		cursormoving=false;
 	}
+	
+	
+	public void actionSelect(KeyEvent e){
+		if(e.getKeyCode()==KeyEvent.VK_Z){
+			state=FIGUREMOVE;
+		}
+		if(e.getKeyCode()==KeyEvent.VK_UP){
+			as.lastOption();
+		}
+		if(e.getKeyCode()==KeyEvent.VK_DOWN){
+			as.nextOption();
+		}
+		if(e.getKeyCode()==KeyEvent.VK_X){
+			if(as.index==ActionSelect.AWAIT){
+				map.figureRemove(selectedfigure.getX(), selectedfigure.getY(), x+map.getX(), y+map.getY(), selectedfigure);
+				selectedfigure.moveTo(x+map.getX(), y+map.getY());
+				state=CURSORMOVE;
+			}
+		}
+	}
+	
+	
+	
 	void moveFigure(KeyEvent e){
 		if(e.getKeyCode()==KeyEvent.VK_Z){
 			state=CURSORMOVE;
@@ -143,10 +176,21 @@ public class CursorMove {
 		
 		if(e.getKeyCode()==KeyEvent.VK_X&&selectedfigure.isMoveable()){
 			
-			map.figureRemove(selectedfigure.getX(), selectedfigure.getY(), x+map.getX(), y+map.getY(), selectedfigure);
-			selectedfigure.moveTo(x+map.getX(), y+map.getY());
+			//map.figureRemove(selectedfigure.getX(), selectedfigure.getY(), x+map.getX(), y+map.getY(), selectedfigure);
+			//selectedfigure.moveTo(x+map.getX(), y+map.getY());
+			as=new ActionSelect();
+			as.insertOption(ActionSelect.AWAIT);
+			if(map.figureHaveEnermy(selectedfigure, x, y)){
+				as.insertOption(ActionSelect.ATTACK);
+				//System.out.println("success");
+			}
+			this.state=ACTIONSELECT;
+			//as.paint(g, ViewData.FRAMEW*2/3, ViewData.FRAMEH/4);
 		}
 	}
+	
+	
+	
 	
 	void moveCursor(KeyEvent e){
 		if(e.getKeyCode()==KeyEvent.VK_LEFT){
