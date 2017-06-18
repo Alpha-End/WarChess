@@ -95,16 +95,9 @@ public class Map {
 				reachable[i][j]=-1;
 			}
 		}
-		DFS(x,y,step);
-		/*
-		for(int i=0;i<height;i++){
-			for(int j=0;j<width;j++){
-				String s=" "+reachable[i][j];
-				s=String.format("%-5s", s);
-				System.out.print(s);
-			}
-			System.out.println("");
-		}*/
+		DFS(x,y,step+stepDistance(x, y));
+		
+
 		return reachable;
 	}
 	int DFS(int x,int y,int step){
@@ -112,7 +105,7 @@ public class Map {
 			return 0;
 		}
 		step-=stepDistance(x, y);
-		if(step<=0||reachable[x][y]>=step){
+		if(step<0||reachable[x][y]>=step){
 			return 0;
 		}
 		reachable[x][y]=step;
@@ -158,12 +151,22 @@ public class Map {
 		int[] addx={-1,1,0,0};
 		int[] addy={0,0,1,-1};
 		for(int i=0;i<4;i++){
-			Cell cell=this.getCell(relative_x+addx[i], relative_y+addy[i]);
-			if(cell.isfigure&&(figure.camp!=cell.getFigure().camp)){
-				return true;
+			if(isLegal(relative_x+addx[i], relative_y+addy[i])){
+				Cell cell=this.getCell(relative_x+addx[i], relative_y+addy[i]);
+				if(cell.isfigure&&(figure.camp!=cell.getFigure().camp)){
+					return true;
+				}
+				
 			}
 		}
 		return false;
+	}
+	
+	boolean isLegal(int x,int y){
+		if(x<0||y<0||x>=width||y>=height){
+			return false;
+		}
+		return true;
 	}
 	
 	public ArrayList<Figure> getEnermy(Figure figure,int relative_x,int relative_y){
@@ -171,12 +174,23 @@ public class Map {
 		int[] addy={0,0,1,-1};
 		ArrayList<Figure> enermylist=new ArrayList<>();
 		for(int i=0;i<4;i++){
-			Cell cell=this.getCell(relative_x+addx[i], relative_y+addy[i]);
-			if(cell.isfigure&&(figure.camp!=cell.getFigure().camp)){
-				enermylist.add(cell.getFigure());
+			if(isLegal(relative_x+addx[i], relative_y+addy[i])){
+				Cell cell=this.getCell(relative_x+addx[i], relative_y+addy[i]);
+				if(cell.isfigure&&(figure.camp!=cell.getFigure().camp)){
+					enermylist.add(cell.getFigure());
+				}
+				
 			}
 		}
 		return enermylist;
+	}
+	
+	public boolean haveAnotherFigure(int x,int y,Figure figure){
+
+		if((figurelocation[x][y]!=null&&figurelocation[x][y].isAlive()&&figure!=figurelocation[x][y])){
+			return true;
+		}
+		return false;
 	}
 	
 	public Cell getCell(int relative_x,int relative_y){

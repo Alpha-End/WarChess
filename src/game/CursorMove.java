@@ -40,6 +40,11 @@ public class CursorMove {
 	int state;
 	final int CURSORMOVE=0,FIGUREMOVE=1,LOADING=2,ACTIONSELECT=3,ENERMYSELECT=4;
 	
+	
+	public boolean isLoading(){
+		return state==CURSORMOVE;
+	}
+	
 	public CursorMove(Game g){
 		map=g.map;
 		bluefigurelist=g.bluefigurelist;
@@ -113,7 +118,7 @@ public class CursorMove {
 		return figurereachable[x+map.getX()][y+map.getY()]>=0;
 	}
 	void paintInformationBox(Graphics g){
-		if(!cursormoving&&cell!=null&&cell.isFigure()){
+		if(!cursormoving&&cell!=null&&cell.isFigure()&&cell.getFigure().isAlive()){
 			
 			g.drawImage(information_box, information_box_x, information_box_y, null);
 			g.setFont(ViewData.INFORMATIONBOXFONT);
@@ -125,7 +130,8 @@ public class CursorMove {
 			g.drawString(s, information_box_x+information_box.getWidth()/20, information_box_y+25+ViewData.INFORMATIONBOXFONT.getSize()*3);
 			s="守备: "+cell.getFigure().getDefense();
 			g.drawString(s, information_box_x+information_box.getWidth()/20, information_box_y+25+ViewData.INFORMATIONBOXFONT.getSize()*4);
-			
+			s="移动力: "+cell.getFigure().getDistance();
+			g.drawString(s, information_box_x+information_box.getWidth()/20, information_box_y+25+ViewData.INFORMATIONBOXFONT.getSize()*5);
 		}
 	}
 	public void cursorMove(KeyEvent e){
@@ -204,7 +210,7 @@ public class CursorMove {
 		}
 		
 		
-		if(e.getKeyCode()==KeyEvent.VK_X&&selectedfigure.isMoveable()&&figurereachable[x+map.getX()][y+map.getY()]>=0){
+		if(e.getKeyCode()==KeyEvent.VK_X&&selectedfigure.isMoveable()&&figurereachable[x+map.getX()][y+map.getY()]>=0&&!map.haveAnotherFigure(x+map.getX(), y+map.getY(),selectedfigure)){
 			
 			//map.figureRemove(selectedfigure.getX(), selectedfigure.getY(), x+map.getX(), y+map.getY(), selectedfigure);
 			//selectedfigure.moveTo(x+map.getX(), y+map.getY());
@@ -267,13 +273,14 @@ public class CursorMove {
 			}
 		}
 		
-		if(state==CURSORMOVE&&e.getKeyCode()==KeyEvent.VK_X){
+		if(state==CURSORMOVE){
 			cell=map.getCell(x, y);
+		}
+		if(state==CURSORMOVE&&e.getKeyCode()==KeyEvent.VK_X){
+			
+			
 			if(cell.isFigure()&&cell.getFigure().getCamp()==map.BLUE&&cell.getFigure().isMoveable()){				
 				selectedfigure=cell.getFigure();
-				
-				
-				
 
 				figurereachable=map.getReachable(selectedfigure.getX(),selectedfigure.getY(),selectedfigure.getDistance());
 				

@@ -11,13 +11,14 @@ import dataControl.StateControl;
 import entity.Figure;
 import entity.Map;
 import game.CursorMove;
+import game.RedFigureAction;
 import interFace.PaintInterface;
 import util.R;
 
 public class Game implements PaintInterface,Runnable,interFace.StateControl{
 	public Map map;
 	int gamestate;
-	final int BLUEROUNDSTART=0,REDROUNDSTART=1,CURSORMOVE=2,FIGURESELECTED=3,FIGUREMOVE=4,FIGUREMOVING=5;//蓝方回合开始，红方回合开始，光标自由移动，人物选中,人物移动，人物移动中
+	final int BLUEROUNDSTART=0,REDROUNDSTART=1,CURSORMOVE=2;//蓝方回合开始，红方回合开始，光标自由移动，人物选中,人物移动，人物移动中
 	public ArrayList<Figure> bluefigurelist,redfigurelist;
 	
 	CursorMove cursormove;
@@ -53,12 +54,17 @@ public class Game implements PaintInterface,Runnable,interFace.StateControl{
 		gamestate=CURSORMOVE;
 		
 		BufferedImage soilder=R.load("img/figure_soldier_blue.png");
-		Figure figure=new Figure(4, 5, "王五", 30, 13, 22, 11, 0, 8, map.BLUE, soilder);
-		
+		Figure figure=new Figure(4, 5, "王五", 30, 30, 22, 11, 0, 6, map.BLUE, soilder);
 		bluefigurelist.add(figure);
 		soilder=R.load("img/figure_soldier_red.png");
-		figure=new Figure(8, 5, "亨利", 23, 23, 14, 2, 0, 5, map.RED, soilder);
+		figure=new Figure(8, 6, "跟班1", 23, 23, 13, 2, 0, 5, map.RED, soilder);
 		redfigurelist.add(figure);
+		figure=new Figure(9, 6, "跟班2", 20, 20, 13, 2, 0, 5, map.RED, soilder);
+		redfigurelist.add(figure);
+		figure=new Figure(10, 8, "亨利", 23, 23, 14, 2, 0, 5, map.RED, soilder);
+		redfigurelist.add(figure);
+		soilder=R.load("img/figure_archer_red.png");
+		//figure=new Figure()
 		
 		for(int i=0;i<bluefigurelist.size();i++){
 			map.addFigure(bluefigurelist.get(i).getX(), bluefigurelist.get(i).getY(), bluefigurelist.get(i));
@@ -72,26 +78,35 @@ public class Game implements PaintInterface,Runnable,interFace.StateControl{
 	public void paint(Graphics e) {
 		// TODO Auto-generated method stub
 		map.paint(e);
+		paintFigure(e);
 		switch(gamestate){
 		case CURSORMOVE:{cursormove.paint(e);}
 		}
-		paintFigure(e);
 	}
 	
 	void paintFigure(Graphics e){
+		int alive=0;
 		for(int i=0;i<bluefigurelist.size();i++){
 			Figure f=bluefigurelist.get(i);
-			if((f.getX()-map.getX()<ViewData.FRAMEW/ViewData.MAP_PIXEL)&&(f.getX()-map.getX()>=0)&&(f.getY()-map.getY()<ViewData.FRAMEH/ViewData.MAP_PIXEL)&&(f.getY()-map.getY()>0)){
+			if(f.isAlive()&&(f.getX()-map.getX()<ViewData.FRAMEW/ViewData.MAP_PIXEL)&&(f.getX()-map.getX()>=0)&&(f.getY()-map.getY()<ViewData.FRAMEH/ViewData.MAP_PIXEL)&&(f.getY()-map.getY()>=0)){
 				int x=f.getX()-map.getX(),y=f.getY()-map.getY();
 				e.drawImage(f.getFigureimg(), x*ViewData.MAP_PIXEL+(ViewData.MAP_PIXEL-f.getFigureimg().getWidth())/2, y*ViewData.MAP_PIXEL+(ViewData.MAP_PIXEL-f.getFigureimg().getHeight())/2,null);
+				//System.out.println(f.getHp());
+				alive++;
 			}
+
+		}
+		if(alive==0){
+			
 		}
 		for(int i=0;i<redfigurelist.size();i++){
 			Figure f=redfigurelist.get(i);
-			if((f.getX()-map.getX()<ViewData.FRAMEW/ViewData.MAP_PIXEL)&&(f.getX()-map.getX()>=0)&&(f.getY()-map.getY()<ViewData.FRAMEH/ViewData.MAP_PIXEL)&&(f.getY()-map.getY()>0)){
+			if(f.isAlive()&&(f.getX()-map.getX()<ViewData.FRAMEW/ViewData.MAP_PIXEL)&&(f.getX()-map.getX()>=0)&&(f.getY()-map.getY()<ViewData.FRAMEH/ViewData.MAP_PIXEL)&&(f.getY()-map.getY()>=0)){
 				int x=f.getX()-map.getX(),y=f.getY()-map.getY();
 				e.drawImage(f.getFigureimg(), x*ViewData.MAP_PIXEL+(ViewData.MAP_PIXEL-f.getFigureimg().getWidth())/2, y*ViewData.MAP_PIXEL+(ViewData.MAP_PIXEL-f.getFigureimg().getHeight())/2,null);
+				//System.out.println(f.getHp());
 			}
+
 		}
 	}
 	@Override
@@ -101,9 +116,27 @@ public class Game implements PaintInterface,Runnable,interFace.StateControl{
 	}
 	
 	public void getKey(KeyEvent e){
-		if(gamestate==CURSORMOVE){
+		if(gamestate==CURSORMOVE&&cursormove.isLoading()&&e.getKeyCode()==KeyEvent.VK_ENTER){
+			redRoundStart();
+		}
+		else if(gamestate==CURSORMOVE){
 			cursormove.cursorMove(e);
 		}
+	}
+	void redRoundStart(){
+		for(int i=0;i<bluefigurelist.size();i++){
+			Figure figure=bluefigurelist.get(i);
+			if(figure.isAlive()){
+				bluefigurelist.get(i).setMoveable(true);
+			}
+			
+		}
+		gamestate=REDROUNDSTART;
+		RedFigureAction rd=new RedFigureAction(this);
+		rd.redFigureAction();
+		map.refreshMap();
+
+		gamestate=CURSORMOVE;
 	}
 	@Override
 	public void start() {

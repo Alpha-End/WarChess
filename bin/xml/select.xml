@@ -15,9 +15,9 @@
 		<option>
 			<text>好麻烦，打晕他吧。</text>
 			<jump>
-				<action>SELECT</action>
-				<source_path>src/xml/select.xml</source_path>
-				<action_id>select_0</action_id>
+				<action>GAME</action>
+				<source_path>src/xml/dialogue_0.xml</source_path>
+				<action_id>dialogue_0</action_id>
 			</jump>
 		</option>
 		<option>

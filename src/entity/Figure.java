@@ -26,6 +26,7 @@ public class Figure {
 		this.moveable=true;
 	}
 	
+
 	public void moveTo(int x,int y){
 		if(moveable){
 			this.x=x;
@@ -35,14 +36,17 @@ public class Figure {
 	}
 	
 	public void attackAnotherFigure(Figure enermy){
-		enermy.hp-=this.attack-enermy.defense;
-		if(enermy.hp<=0){
-			return;
+		if(isAlive()){
+			enermy.hp-=this.attack-enermy.defense;
+			if(enermy.hp<=0){
+				return;
+			}
+			this.hp-=enermy.attack-this.defense;
 		}
-		this.hp-=enermy.attack-this.defense;
+		
 	}
 	public boolean isAlive(){
-		if(hp>=0){
+		if(hp>0){
 			return true;
 		}
 		return false;
@@ -50,7 +54,7 @@ public class Figure {
 	public boolean isMoveable() {
 		return moveable;
 	}
-	void setMoveable(boolean moveable) {
+	public void setMoveable(boolean moveable) {
 		this.moveable = moveable;
 	}
 	public int getX() {
@@ -118,6 +122,14 @@ public class Figure {
 	}
 	public void setFigureimg(BufferedImage figureimg) {
 		this.figureimg = figureimg;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Figure [x=" + x + ", y=" + y + ", name=" + name + ", hpmax=" + hpmax + ", hp=" + hp + ", attack="
+				+ attack + ", defense=" + defense + ", EXP=" + EXP + ", distance=" + distance + ", camp=" + camp
+				+ ", moveable=" + moveable + ", figureimg=" + figureimg + "]";
 	}
 	
 	
