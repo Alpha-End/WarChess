@@ -17,6 +17,7 @@ public class MainPanel extends JPanel implements Runnable{
 		ViewData.load=new Load();
 		ViewData.select=new Select();
 		ViewData.game=new Game();
+		ViewData.ending=new Ending();
 	}
 	@Override
 	public void run() {
@@ -29,6 +30,7 @@ public class MainPanel extends JPanel implements Runnable{
 			case ViewData.LOAD:{paintI=ViewData.load;break;}
 			case ViewData.SELECT:{paintI=ViewData.select;break;}
 			case ViewData.GAME:{paintI=ViewData.game;break;}
+			case ViewData.ENDING:{paintI=ViewData.ending;break;}
 			}
 			
 			try{

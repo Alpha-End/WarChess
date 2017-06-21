@@ -2,6 +2,7 @@ package data;
 
 import java.awt.Font;
 
+import view.Ending;
 import view.Game;
 import view.Load;
 import view.MainPanel;
@@ -23,7 +24,7 @@ public class ViewData {
 	
 	public static final int MAP_PIXEL=128;//地图一单位的长宽
 	
-	public static final int WELCOME=0,LOAD=1,SAVE=2,NEWGAME=3,PLOT=4,SELECT=5,GAME=6;//游戏状态
+	public static final int WELCOME=0,LOAD=1,SAVE=2,NEWGAME=3,PLOT=4,SELECT=5,GAME=6,ENDING=7;//游戏状态
 	public static final int INTERVAL_TIME=85;//LOADING,WELCOME等界面绘制间隔时间
 	
 	public static int state=0;
@@ -39,5 +40,7 @@ public class ViewData {
 	public static Load load;
 	public static Select select;
 	public static Game game;
+	public static Ending ending;
 	
+	public static boolean victory=true;
 }

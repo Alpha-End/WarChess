@@ -54,7 +54,7 @@ public class Game implements PaintInterface,Runnable,interFace.StateControl{
 		gamestate=CURSORMOVE;
 		
 		BufferedImage soilder=R.load("img/figure_soldier_blue.png");
-		Figure figure=new Figure(4, 5, "王五", 30, 30, 22, 11, 0, 6, map.BLUE, soilder);
+		Figure figure=new Figure(4, 5, "王五", 30, 30, 21, 6, 0, 6, map.BLUE, soilder);
 		bluefigurelist.add(figure);
 		soilder=R.load("img/figure_soldier_red.png");
 		figure=new Figure(8, 6, "跟班1", 23, 23, 13, 2, 0, 5, map.RED, soilder);
@@ -84,21 +84,40 @@ public class Game implements PaintInterface,Runnable,interFace.StateControl{
 		}
 	}
 	
+	
+	
+	public static void checkFigureList(ArrayList<Figure> bluefigurelist,ArrayList<Figure> redfigurelist){
+		int b=0,r=0;;
+		for(int i=0;i<bluefigurelist.size();i++){
+			if(bluefigurelist.get(i).isAlive()){
+				b++;
+			}
+		}
+		for(int i=0;i<redfigurelist.size();i++){
+			if(redfigurelist.get(i).isAlive()){
+				r++;
+			}
+		}
+		if(b==0){
+			ViewData.victory=false;
+			ViewData.state=ViewData.ENDING;
+		}
+		if(r==0){
+			ViewData.victory=true;
+			ViewData.state=ViewData.ENDING;
+		}
+	}
 	void paintFigure(Graphics e){
-		int alive=0;
 		for(int i=0;i<bluefigurelist.size();i++){
 			Figure f=bluefigurelist.get(i);
 			if(f.isAlive()&&(f.getX()-map.getX()<ViewData.FRAMEW/ViewData.MAP_PIXEL)&&(f.getX()-map.getX()>=0)&&(f.getY()-map.getY()<ViewData.FRAMEH/ViewData.MAP_PIXEL)&&(f.getY()-map.getY()>=0)){
 				int x=f.getX()-map.getX(),y=f.getY()-map.getY();
 				e.drawImage(f.getFigureimg(), x*ViewData.MAP_PIXEL+(ViewData.MAP_PIXEL-f.getFigureimg().getWidth())/2, y*ViewData.MAP_PIXEL+(ViewData.MAP_PIXEL-f.getFigureimg().getHeight())/2,null);
 				//System.out.println(f.getHp());
-				alive++;
 			}
 
 		}
-		if(alive==0){
-			
-		}
+
 		for(int i=0;i<redfigurelist.size();i++){
 			Figure f=redfigurelist.get(i);
 			if(f.isAlive()&&(f.getX()-map.getX()<ViewData.FRAMEW/ViewData.MAP_PIXEL)&&(f.getX()-map.getX()>=0)&&(f.getY()-map.getY()<ViewData.FRAMEH/ViewData.MAP_PIXEL)&&(f.getY()-map.getY()>=0)){
@@ -108,6 +127,7 @@ public class Game implements PaintInterface,Runnable,interFace.StateControl{
 			}
 
 		}
+		checkFigureList(bluefigurelist, redfigurelist);
 	}
 	@Override
 	public void run() {

@@ -4,14 +4,7 @@
 		<background>
 			<img_path>img/classroom_1.jpg</img_path>
 		</background>
-		<option>
-			<text>无视他。</text>
-			<jump>
-				<action>SELECT</action>
-				<source_path>src/xml/select.xml</source_path>
-				<action_id>select_0</action_id>
-			</jump>
-		</option>
+
 		<option>
 			<text>好麻烦，打晕他吧。</text>
 			<jump>
@@ -21,11 +14,19 @@
 			</jump>
 		</option>
 		<option>
-			<text>好像有人来了，先躲避一下吧。</text>
+			<text>关卡尚未设置。</text>
 			<jump>
-				<action>GAME</action>
-				<source_path>src/xml/dialogue_0.xml</source_path>
-				<action_id>dialogue_0</action_id>
+				<action>SELECT</action>
+				<source_path>src/xml/select.xml</source_path>
+				<action_id>select_0</action_id>
+			</jump>
+		</option>
+		<option>
+			<text>关卡尚未设置。</text>
+			<jump>
+				<action>SELECT</action>
+				<source_path>src/xml/select.xml</source_path>
+				<action_id>select_0</action_id>
 			</jump>
 		</option>
 	</select>
